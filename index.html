@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dorthe &amp; Heinrich — Bryllup 2027</title>
+
+<!-- iOS "Add to Home Screen" support (no App Store, no Mac needed) -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vores bryllup">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%234A5D48'/%3E%3Ctext x='50' y='62' font-size='46' text-anchor='middle' fill='%23F3F0E8' font-family='Georgia,serif'%3ED%26H%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --green-dark:#3E4F3C;
+    --green:#5C7259;
+    --green-pale:#EEF1E9;
+    --paper:#FBF9F4;
+    --rose:#BE7E82;
+    --ink:#2B2C26;
+    --ink-soft:#5A5B52;
+    --line: rgba(43,44,38,0.14);
+    --radius: 2px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#20241F;
+      --green-pale:#2A2F27;
+      --ink:#F1EFE6;
+      --ink-soft:#C7C7BA;
+      --line: rgba(241,239,230,0.16);
+      --green:#8DA189;
+      --green-dark:#A9BBA5;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#20241F;
+    --green-pale:#2A2F27;
+    --ink:#F1EFE6;
+    --ink-soft:#C7C7BA;
+    --line: rgba(241,239,230,0.16);
+    --green:#8DA189;
+    --green-dark:#A9BBA5;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{max-width:100%;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 24px;}
+  h1,h2,h3{
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:0.01em;
+  }
+  a{color:var(--green-dark);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(180deg, var(--green-dark), var(--green) 130%);
+    color:#F3F1E8;
+    padding:72px 24px 56px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(255,255,255,0.10), transparent 40%),
+      radial-gradient(circle at 88% 82%, rgba(255,255,255,0.08), transparent 45%);
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    font-size:0.8rem;
+    color:#D9E2D3;
+    margin-bottom:18px;
+    position:relative;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 9vw, 4.2rem);
+    line-height:1.05;
+    font-style:italic;
+    position:relative;
+  }
+  .hero .amp{color:var(--rose); font-style:normal;}
+  .hero-date{
+    margin-top:22px;
+    font-size:1.05rem;
+    color:#EDEAD9;
+    position:relative;
+  }
+  .hero-place{
+    margin-top:6px;
+    font-size:0.92rem;
+    color:#C9D3C2;
+    position:relative;
+  }
+
+  .countdown{
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    margin-top:34px;
+    position:relative;
+  }
+  .countdown div{text-align:center;}
+  .countdown .n{
+    font-family:'Cormorant Garamond', serif;
+    font-size:2rem;
+    display:block;
+    color:#fff;
+  }
+  .countdown .l{
+    font-size:0.68rem;
+    color:#C9D3C2;
+    text-transform:lowercase;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:52px 0;}
+  .section-head{margin-bottom:28px;}
+  .section-head h2{font-size:1.9rem;}
+  .section-head p{color:var(--ink-soft); margin-top:6px; font-size:0.95rem;}
+  .divider{
+    border:0; border-top:1px solid var(--line); margin:0;
+  }
+
+  /* ---------- PROGRAM (real sequence -> numbered is fine here) ---------- */
+  .timeline{list-style:none; margin:0; padding:0;}
+  .timeline li{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .timeline li:last-child{border-bottom:none;}
+  .timeline time{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.15rem;
+    color:var(--green-dark);
+    padding-top:2px;
+  }
+  .timeline h3{font-size:1.15rem; font-weight:600; font-family:'Inter',sans-serif;}
+  .timeline p{margin:4px 0 0; color:var(--ink-soft); font-size:0.92rem;}
+
+  /* ---------- PRACTICAL INFO ---------- */
+  .info-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    border:1px solid var(--line);
+  }
+  .info-grid > div{
+    padding:18px 20px;
+    border-bottom:1px solid var(--line);
+  }
+  .info-grid > div:last-child{border-bottom:none;}
+  .info-grid h3{font-size:1.05rem; font-family:'Inter',sans-serif; font-weight:600; margin-bottom:4px;}
+  .info-grid p{margin:0; color:var(--ink-soft); font-size:0.92rem;}
+
+  /* ---------- RSVP ---------- */
+  .card{
+    background:var(--green-pale);
+    border:1px solid var(--line);
+    padding:28px 24px;
+  }
+  label{
+    display:block;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    margin:16px 0 6px;
+  }
+  label:first-of-type{margin-top:0;}
+  input[type=text], input[type=number], textarea, select{
+    width:100%;
+    padding:11px 12px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:0.95rem;
+    border-radius:var(--radius);
+  }
+  textarea{resize:vertical; min-height:70px;}
+  .radio-row{display:flex; gap:10px; margin-top:6px;}
+  .radio-row label{
+    flex:1;
+    margin:0;
+    text-align:center;
+    padding:10px;
+    border:1px solid var(--line);
+    cursor:pointer;
+    font-size:0.88rem;
+    color:var(--ink);
+    background:var(--paper);
+  }
+  .radio-row input{display:none;}
+  .radio-row input:checked + span{font-weight:600;}
+  .radio-row label:has(input:checked){
+    background:var(--green-dark);
+    color:#fff;
+    border-color:var(--green-dark);
+  }
+  button{
+    margin-top:22px;
+    width:100%;
+    padding:13px;
+    background:var(--green-dark);
+    color:#fff;
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-size:0.95rem;
+    font-weight:600;
+    cursor:pointer;
+    border-radius:var(--radius);
+  }
+  button:active{opacity:0.85;}
+  .note{font-size:0.78rem; color:var(--ink-soft); margin-top:12px;}
+
+  .guestlist{margin-top:36px;}
+  .guestlist h3{font-size:1.1rem; font-family:'Inter',sans-serif; font-weight:600; margin-bottom:10px;}
+  .guest{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:0.92rem;
+  }
+  .guest .status{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .empty{color:var(--ink-soft); font-size:0.9rem; font-style:italic;}
+
+  footer{
+    text-align:center;
+    padding:36px 24px 60px;
+    color:var(--ink-soft);
+    font-size:0.82rem;
+  }
+
+  .confirm{
+    display:none;
+    margin-top:16px;
+    padding:12px 14px;
+    background:var(--green-dark);
+    color:#fff;
+    font-size:0.88rem;
+    border-radius:var(--radius);
+  }
+  .confirm.show{display:block;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-eyebrow">Vi skal giftes</div>
+  <h1>Dorthe <span class="amp">&amp;</span> Heinrich</h1>
+  <div class="hero-date">Lørdag den 4. september 2027</div>
+  <div class="hero-place">Vognserup Gods</div>
+  <div class="countdown" id="countdown">
+    <div><span class="n" id="cd-days">–</span><span class="l">dage</span></div>
+    <div><span class="n" id="cd-hours">–</span><span class="l">timer</span></div>
+    <div><span class="n" id="cd-min">–</span><span class="l">minutter</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="program">
+    <div class="section-head">
+      <h2>Dagens program</h2>
+      <p>Sådan kommer dagen til at forløbe</p>
+    </div>
+    <ul class="timeline">
+      <li><time>14:30</time><div><h3>Vielse</h3><p>På Vognserup Gods</p></div></li>
+      <li><time>15:00</time><div><h3>Reception</h3><p>Champagne og lykønskninger</p></div></li>
+      <li><time>17:00</time><div><h3>Middag</h3><p>Fælles middag for alle gæster</p></div></li>
+      <li><time>22:00</time><div><h3>Fest</h3><p>Brudevals efterfulgt af dans til den lyse morgen</p></div></li>
+    </ul>
+  </section>
+
+  <hr class="divider">
+
+  <section id="info">
+    <div class="section-head">
+      <h2>Praktisk info</h2>
+      <p>Godt at vide, inden dagen kommer</p>
+    </div>
+    <div class="info-grid">
+      <div>
+        <h3>Dresscode</h3>
+        <p>Så festligt som du ønsker. Husk overtøj.</p>
+      </div>
+      <div>
+        <h3>Gaver</h3>
+        <p>Jeres tilstedeværelse er gave nok — men ønsker I at bidrage med en gave, er oplevelser med jer højst på listen.</p>
+      </div>
+      <div>
+        <h3>Overnatning</h3>
+        <p>Information om overnatning følger.</p>
+      </div>
+      <div>
+        <h3>Transport</h3>
+        <p>Der vil være biler til rådighed sent på aftenen, eller taxa kan bestilles på stedet.</p>
+      </div>
+      <div>
+        <h3>Ceremonien</h3>
+        <p>Vielsen afholdes i lysthuset på godset såfremt vejret tillader det. Hvis vejret fordrer indendørsvielse, foregår den i Staklandens store sal.</p>
+      </div>
+      <div>
+        <h3>Adresse</h3>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=%22Vognserup%207E%2C%204420%20Regstrup%2C%20Denmark%22" target="_blank" rel="noopener">Vognserup 7E, 4420 Regstrup, Denmark</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="rsvp">
+    <div class="section-head">
+      <h2>S.U.</h2>
+      <p>Vi glæder os til at høre fra jer senest 1. juni 2027</p>
+    </div>
+
+    <div class="card">
+      <form id="rsvp-form">
+        <label for="name">Navn(e)</label>
+        <input type="text" id="name" placeholder="F.eks. Mette &amp; Jonas Hansen" required>
+
+        <label>Kommer I?</label>
+        <div class="radio-row">
+          <label><input type="radio" name="attending" value="ja" checked><span>Ja, vi kommer</span></label>
+          <label><input type="radio" name="attending" value="nej"><span>Vi kan desværre ikke</span></label>
+        </div>
+
+        <label for="guests">Antal personer</label>
+        <input type="number" id="guests" min="1" max="10" value="1">
+
+        <label for="allergies">Allergier / kostbehov</label>
+        <textarea id="allergies" placeholder="F.eks. nøddeallergi, vegetar..."></textarea>
+
+        <label for="song">Sangønske til DJ'en</label>
+        <input type="text" id="song" placeholder="Titel og kunstner">
+
+        <button type="submit">Send S.U.</button>
+      </form>
+      <div class="confirm" id="confirm">Tak! Jeres svar er gemt.</div>
+      <p class="note">Svar gemmes lokalt i din browser til denne visning, og sendes samtidig videre til jeres Google Sheet, når GOOGLE_SCRIPT_URL i koden er sat til jeres egen Web app-adresse.</p>
+    </div>
+
+    <div class="guestlist">
+      <h3>Tilmeldte indtil videre</h3>
+      <div id="guest-items"><p class="empty">Ingen har svaret endnu.</p></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Spørgsmål? Skriv til <a href="mailto:dorthebr@hotmail.com">dorthebr@hotmail.com</a> eller <a href="mailto:heinrich.ringsgart@gmail.com">heinrich.ringsgart@gmail.com</a>
+</footer>
+
+<script>
+  // Countdown
+  var weddingDate = new Date("2027-09-04T14:30:00");
+  function updateCountdown(){
+    var now = new Date();
+    var diff = weddingDate - now;
+    if(diff < 0) diff = 0;
+    var days = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins = Math.floor((diff % 3600000) / 60000);
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = hours;
+    document.getElementById('cd-min').textContent = mins;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 30000);
+
+  // ---- Kobl til jeres eget Google Sheet ----
+  // Erstat teksten nedenfor med den Web app-URL, I fik i trin 3.
+  // Eksempel: "https://script.google.com/macros/s/AKfycb.../exec"
+  var GOOGLE_SCRIPT_URL = "GOOGLE_SCRIPT_URL";
+
+  function sendToSheet(entry){
+    if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === "GOOGLE_SCRIPT_URL") return;
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script tillader ikke at læse svaret tilbage, men gemmer stadig data
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(entry)
+    }).catch(function(err){
+      console.warn('Kunne ikke sende OSA til Google Sheet:', err);
+    });
+  }
+
+  // RSVP demo storage (per-device only — see note in chat)
+  var STORAGE_KEY = 'bryllup_rsvp_list';
+
+  function loadGuests(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){ return []; }
+  }
+  function saveGuests(list){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }catch(e){}
+  }
+  function renderGuests(){
+    var list = loadGuests();
+    var el = document.getElementById('guest-items');
+    if(list.length === 0){
+      el.innerHTML = '<p class="empty">Ingen har svaret endnu.</p>';
+      return;
+    }
+    el.innerHTML = list.map(function(g){
+      var status = g.attending === 'ja' ? (g.guests + ' pers.') : 'kan ikke deltage';
+      return '<div class="guest"><span>' + escapeHtml(g.name) + '</span><span class="status">' + status + '</span></div>';
+    }).join('');
+  }
+  function escapeHtml(str){
+    var d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  document.getElementById('rsvp-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    if(!name) return;
+    var attending = document.querySelector('input[name="attending"]:checked').value;
+    var guests = parseInt(document.getElementById('guests').value, 10) || 1;
+    var allergies = document.getElementById('allergies').value.trim();
+    var song = document.getElementById('song').value.trim();
+
+    var entry = { name: name, attending: attending, guests: guests, allergies: allergies, song: song, ts: Date.now() };
+    var list = loadGuests();
+    list.push(entry);
+    saveGuests(list);
+    renderGuests();
+    sendToSheet(entry);
+
+    var confirm = document.getElementById('confirm');
+    confirm.classList.add('show');
+    this.reset();
+    setTimeout(function(){ confirm.classList.remove('show'); }, 4000);
+  });
+
+  renderGuests();
+</script>
+
+</body>
+</html>
